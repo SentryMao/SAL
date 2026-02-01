@@ -1,0 +1,8 @@
+_target_: src.data.partialspoof.PartialSpoofDataModule
+root: /data/import/deepfake/PartialSpoof
+sample_rate: 16000
+resolution_train: 0.16
+resolution_test: 0.16
+max_label_len: 25
+batch_size: 64
+num_workers: 10

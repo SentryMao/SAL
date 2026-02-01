@@ -1,0 +1,23 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: partialspoof
+  - model: large_cf_8labels_2loss
+  - logger: tensorboard
+  - trainer: gpu
+  - paths: default
+  - extras: default
+  - hydra: default
+
+task_name: eval
+tags:
+  - eval
+clean_tag: ${join:"-", ${tags}}
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: /home/yuchen.mao/DataMixing/sdd-pl/logs/large-cf-8labels-2loss-mixup2-rawboost/run17/train/checkpoints/epoch_030-eer_2.5529.ckpt
+
+data:
+  batch_size: 1
+  num_workers: 4

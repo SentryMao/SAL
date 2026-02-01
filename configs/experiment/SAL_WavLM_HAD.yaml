@@ -1,0 +1,35 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /data: had_rawboost
+  - override /trainer: gpu
+  - override /model: sal/wavlm_cf
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags:
+  - wavlm
+  - cf
+task_name: train
+
+seed: 888
+
+trainer:
+  min_epochs: 40
+  max_epochs: 60
+  devices: 1
+
+data:
+  batch_size: 32
+  num_workers: 16
+
+model:
+  mixup2: true
+  mixup_ratio: 0.2
+  net:
+    resolution_train: 0.02
+    resolution_test: 0.02

@@ -1,0 +1,9 @@
+_target_: src.data.llama_partialspoof.LlamaPartialSpoofDataModule
+root: /data/import/deepfake/LlamaPartialSpoof
+part: cf
+sample_rate: 16000
+resolution_train: 0.02
+resolution_test: 0.02
+max_label_len: 200
+batch_size: 64
+num_workers: 10

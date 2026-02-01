@@ -1,0 +1,31 @@
+_target_: src.data.combined_dataset.CombinedDataModule
+partialspoof_root: /data/import/deepfake/PartialSpoof
+had_root: /gpfs/sjtu/audiocc/data/import/deepfake/datasets/HAD
+sample_rate: 16000
+
+# PartialSpoof settings
+partialspoof_resolution: 0.16
+partialspoof_max_label_len: 25
+
+# HAD settings
+had_resolution: 0.16
+had_max_label_len: 25
+had_test_split: dev
+
+# Common loader settings
+batch_size: 64
+num_workers: 10
+
+# Augmentation (applies only to PartialSpoof branch during training)
+use_augmentation: true
+augmentation_algo: 4
+augmentation_prob: 0.5
+
+# Mixing ratios for training
+partialspoof_ratio: 0.7
+had_ratio: 0.3
+
+# Mixup settings
+use_mixup: true
+mixup_ratio: 0.2
+mixup2: true

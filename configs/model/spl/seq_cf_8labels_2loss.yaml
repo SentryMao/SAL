@@ -1,0 +1,35 @@
+_target_: src.trainers.SAL.SPLTrainer
+
+criterion:
+  _target_: src.models.criterion.basic_loss.MaskedCrossEntropyLoss
+  _convert_: all
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.00001
+  weight_decay: 0.0001
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 10
+  gamma: 0.1
+
+net:
+  _target_: src.models.net.model.SSL_SeqModel_8Labels_2Loss
+  ssl_encoder: xlsr
+  mode: s3prl_weighted
+  ckpt: /exp/yuchen.mao/xlsr2_300m.pt
+  hid_dim: 1024
+  seq_model: cf
+  resolution_train: 0.16
+  resolution_test: 0.16
+  pool: avg
+
+
+# compile model for faster training with pytorch 2.0
+compile: false
+
+v2: 10
+

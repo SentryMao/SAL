@@ -1,0 +1,12 @@
+_target_: src.data.had.HADDataModule
+root: /gpfs/sjtu/audiocc/data/import/deepfake/datasets/HAD
+test: dev
+sample_rate: 16000
+resolution_train: 0.02
+resolution_test: 0.02
+max_label_len: 25
+batch_size: 64
+num_workers: 10
+use_augmentation: True
+augmentation_algo: 4
+augmentation_prob: 0.5

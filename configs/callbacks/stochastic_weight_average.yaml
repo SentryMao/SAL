@@ -1,0 +1,35 @@
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.StochasticWeightAveraging.html
+defaults:
+  - default
+  - model_checkpoint
+  - early_stopping
+  - model_summary
+  - rich_progress_bar
+  - _self_
+
+stochastic_weight_average:
+  _target_: lightning.pytorch.callbacks.StochasticWeightAveraging
+  swa_lrs: 0.0001 # the learning rate to use for the SWA model
+  swa_epoch_start: 0.8 # the epoch to start averaging the weights
+  annealing_epochs: 10 # the number of epochs to linearly anneal the learning rate to zero
+  annealing_strategy: "cos" # the annealing strategy to use
+  device: null # the device to use for the SWA model
+
+model_checkpoint:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "epoch_{epoch:03d}"
+  verbose: True
+  monitor: "val/eer"
+  mode: "min"
+  save_last: True
+  auto_insert_metric_name: False
+  save_top_k: 3
+
+early_stopping:
+  monitor: "val/eer"
+  patience: 50
+  mode: "min"
+
+model_summary:
+  max_depth: -1
+
